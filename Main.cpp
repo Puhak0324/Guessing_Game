@@ -1,5 +1,7 @@
 #include <iostream> //Allows use of input/output functions
 #include <cmath> //Allows you to work with math functions
+#include <time.h>
+#include <string>
 using namespace std;
 
 void GuessingGame1();
@@ -7,19 +9,46 @@ void GuessingGameWithLimit();
 void GuessingGame2();
 void GuessingGame3();
 
+string answer1;
+string answer2;
+string answer3;
 
 int main()
 {
-    GuessingGame1();
-    GuessingGameWithLimit();
-    GuessingGame2();
-    GuessingGame2();
 
+    cout << "Would you like to play a guessing game? Y/N \n";
+    cin >> answer1;
+        if (answer1 == "Y") {
+            GuessingGame1();
+    }
+        else if (answer1 == "N"){
+            cout << "Invalid response.";
+    }
 
+    cout << "Would you like to try a harder game? Y/N \n";
+    cin >> answer2;
+
+        if (answer2 == "Y") {
+            GuessingGameWithLimit();
+        }
+        else if (answer2 == "N") {
+            cout << "Invalid response.";
+        }
+
+        cout << "Would you like to try an even tougher game? Y/N \n";
+        cin >> answer2;
+
+        if (answer2 == "Y") {
+            GuessingGame3();
+        }
+        else if (answer2 == "N") {
+            cout << "Invalid response.";
+        }
+  
     return 0;
 }
 
-void GuessingGame1() {
+void GuessingGame3() {
     //Random number guessing game
        // Initialize random seed
     srand(static_cast<unsigned int>(time(0)));
@@ -28,25 +57,25 @@ void GuessingGame1() {
     int secretNumber = rand() % 100 + 1;
     int guess = 0;
 
-    std::cout << "I have chosen a number between 1 and 100." << std::endl;
-    std::cout << "Can you guess what it is?" << std::endl;
+    cout << "I have chosen a number between 1 and 100." << endl;
+    cout << "Can you guess what it is?" << endl;
 
     while (guess != secretNumber)
     {
-        std::cout << "Enter your guess: ";
-        std::cin >> guess;
+        cout << "Enter your guess: ";
+        cin >> guess;
 
         if (guess > secretNumber)
         {
-            std::cout << "Too high! Try again." << std::endl;
+            cout << "Too high! Try again." << endl;
         }
         else if (guess < secretNumber)
         {
-            std::cout << "Too low! Try again." << std::endl;
+            cout << "Too low! Try again." << endl;
         }
         else
         {
-            std::cout << "Congratulations! You guessed my number!" << std::endl;
+            cout << "Congratulations! You guessed my number!" << endl;
         }
     }
 }
@@ -56,32 +85,34 @@ void GuessingGameWithLimit() {
     int secretNum = 7;
     int guess = 0;
     int guessCount = 0;
-    int guessLimit = 3;
+    int guessLimit = 5;
     bool outOfGuesses = false;
     
-    cout << "Let's play a game, guess what number I'm thinking of! \n";
+    cout << "Guess what number I'm thinking of. \n";
+    cout << "You have 5 tries. \n";
     while (secretNum != guess && !outOfGuesses) {
         if (guessCount < guessLimit) {
             cout << "Enter Guess: ";
             cin >> guess;
+            if (guess == secretNum) {
+                cout << "You Win! \n";
+                return;
+            }
             guessCount++;
-            cout << "Nope!";
+            cout << "Nope! \n";
         }
         else {
             outOfGuesses = true;
         }
     }
-
     if (outOfGuesses) {
-        cout << "You Lose!";
+        cout << "You Lose! \n";
     }
-    else {
-        cout << "You Win!";
-    }
+   
 }
 
 
-void GuessingGame2() {
+void GuessingGame1() {
     //While Loop Version
     int secretNum = 7;
     int guess = 0;
@@ -89,12 +120,18 @@ void GuessingGame2() {
     while (secretNum != guess) {
         cout << "Enter Guess: ";
         cin >> guess;
+        if (guess < secretNum) {
+            cout << "Too low, try again! \n";
+        }
+        else if (guess > secretNum) {
+            cout << "Too high, try again! \n";
+        }
     }
-    cout << "You Win!";
+    cout << "You Win! ";
 }
 
-
-void GuessingGame3() {
+//Same as the game above
+void GuessingGame2() {
     //Do-While Loop Version
     int secretNum = 7;
     int guess = 0;
@@ -104,6 +141,5 @@ void GuessingGame3() {
         cin >> guess;
     } while (secretNum != guess);
 
-    cout << "You Win!";
+    cout << "You Win! ";
 }
-
