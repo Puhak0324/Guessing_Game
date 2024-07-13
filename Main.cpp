@@ -9,40 +9,46 @@ void GuessingGameWithLimit();
 void GuessingGame2();
 void GuessingGame3();
 
-string answer1;
-string answer2;
-string answer3;
+string answer;
 
 int main()
 {
 
     cout << "Would you like to play a guessing game? Y/N \n";
-    cin >> answer1;
-        if (answer1 == "Y") {
-            GuessingGame1();
+    cin >> answer;
+     
+    while (answer != "Y") {
+        cout << "Invalid response. Please try again. \n";
+        cout << "Would you like to play a guessing game? Y/N \n";
+        cin >> answer;
     }
-        else if (answer1 == "N"){
-            cout << "Invalid response.";
-    }
+        if (answer == "Y") {
+                GuessingGame1();
+        }
+       
 
     cout << "Would you like to try a harder game? Y/N \n";
-    cin >> answer2;
+    cin >> answer;
 
-        if (answer2 == "Y") {
-            GuessingGameWithLimit();
-        }
-        else if (answer2 == "N") {
-            cout << "Invalid response.";
-        }
+    while (answer != "Y") {
+        cout << "Invalid response. Please try again. \n";
+        cout << "Would you like to play a harder game? Y/N \n";
+        cin >> answer;
+    }
+    if (answer == "Y") {
+        GuessingGameWithLimit();
+    }
 
         cout << "Would you like to try an even tougher game? Y/N \n";
-        cin >> answer2;
+        cin >> answer;
 
-        if (answer2 == "Y") {
-            GuessingGame3();
+        while (answer != "Y") {
+            cout << "Invalid response. Please try again. \n";
+            cout << "Would you like to try the toughest game? Y/N \n";
+            cin >> answer;
         }
-        else if (answer2 == "N") {
-            cout << "Invalid response.";
+        if (answer == "Y") {
+            GuessingGame3();
         }
   
     return 0;
